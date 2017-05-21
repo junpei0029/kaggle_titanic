@@ -60,9 +60,6 @@ def main():
     chainer.serializers.load_npz("train_chainer.model", model)
     label_prediction = predict(model, x_test)
 
-    print(x_test.shape)
-    print(x_test.shape[0])
-
     ids = test_df[:,0].reshape(x_test.shape[0],1)
     result = np.hstack((ids,label_prediction.reshape(x_test.shape[0],1)))
     np.savetxt("predict_chainer.csv", result, delimiter=",", header="PassengerId,Survived", fmt='%.0f')
